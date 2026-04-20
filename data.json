@@ -1,30 +1,30 @@
 {
   "date": "2026年4月20日 周一",
   "age": "2岁8个月",
-  "total_cny": 1429858,
+  "total_cny": 1430678,
   "assets": [
     {
       "name": "比特币",
       "emoji": "₿",
       "qty_display": "1 枚",
-      "price_display": "¥508,062/枚",
-      "value_cny": 508062,
-      "pct": 35.5
+      "price_display": "¥508,745/枚",
+      "value_cny": 508745,
+      "pct": 35.6
     },
     {
       "name": "黄金",
       "emoji": "🥇",
       "qty_display": "388.5 克",
-      "price_display": "¥1,052.62/克",
-      "value_cny": 408944,
+      "price_display": "¥1,052.98/克",
+      "value_cny": 409081,
       "pct": 28.6
     },
     {
       "name": "宁德时代",
       "emoji": "🔋",
       "qty_display": "600 股",
-      "price_display": "¥427.01/股",
-      "value_cny": 256206,
+      "price_display": "¥427.30/股",
+      "value_cny": 256380,
       "pct": 17.9
     },
     {
@@ -39,27 +39,43 @@
       "name": "腾讯控股",
       "emoji": "🐧",
       "qty_display": "200 股",
-      "price_display": "HK$525.00",
-      "value_cny": 91590,
+      "price_display": "HK$524.00",
+      "value_cny": 91416,
       "pct": 6.4
     }
   ],
   "highlights": [
-    "BTC 报 $74,498（¥508,062/枚），占组合 35.5%",
-    "国际金价 $4,794/盎司，折合 ¥1,052.62/克，黄金持仓占 28.6%",
-    "宁德时代 ¥427.01，持仓占 17.9%",
-    "腾讯控股 HK$525.00，持仓占 6.4%"
+    "BTC 报 $74,605（¥508,745/枚），占组合 35.6%",
+    "国际金价 $4,795/盎司，折合 ¥1,052.98/克，黄金持仓占 28.6%",
+    "宁德时代 ¥427.30，持仓占 17.9%",
+    "腾讯控股 HK$524.00，持仓占 6.4%"
   ],
-  "updated_at": "2026-04-20 11:16 CST",
+  "monthly": [
+    {
+      "month": "2026-03",
+      "avg": 1397371,
+      "count": 26,
+      "min": 1344172,
+      "max": 1474746
+    },
+    {
+      "month": "2026-04",
+      "avg": 1378788,
+      "count": 12,
+      "min": 1351452,
+      "max": 1430678
+    }
+  ],
+  "updated_at": "2026-04-20 11:52 CST",
   "prices": {
-    "btc_usd": 74498,
-    "btc_cny": 508062,
-    "gold_usd_oz": 4793.600098,
-    "gold_cny_g": 1052.62,
+    "btc_usd": 74605,
+    "btc_cny": 508745,
+    "gold_usd_oz": 4795.200195,
+    "gold_cny_g": 1052.98,
     "usd_cny": 6.83,
     "hkd_cny": 0.8723,
-    "catl_cny": 427.01,
-    "moutai_cny": 1409.0,
-    "tencent_hkd": 525.0
+    "catl_cny": 427.3,
+    "moutai_cny": 1411.1,
+    "tencent_hkd": 524.0
   }
 }

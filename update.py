@@ -12,6 +12,7 @@ PORTFOLIO = BASE / 'fufu-portfolio.json'
 if not PORTFOLIO.exists():
     PORTFOLIO = BASE.parent / 'fufu-portfolio.json'
 OUT = BASE / 'data.json'
+HISTORY = BASE / 'history.json'
 
 def get_json(url, timeout=15):
     req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
@@ -142,12 +143,42 @@ except StopIteration: pass
 
 now = datetime.datetime.now()
 weekdays = ['周一','周二','周三','周四','周五','周六','周日']
+today_key = now.strftime('%Y-%m-%d')
+
+# 追加历史
+history = {"daily": {}}
+if HISTORY.exists():
+    with open(HISTORY, 'r', encoding='utf-8') as f:
+        history = json.load(f)
+        history.setdefault('daily', {})
+history['daily'][today_key] = total
+with open(HISTORY, 'w', encoding='utf-8') as f:
+    json.dump(history, f, ensure_ascii=False, indent=2)
+
+# 计算月度均值
+from collections import defaultdict
+monthly_agg = defaultdict(list)
+for date_str, val in history['daily'].items():
+    ym = date_str[:7]  # YYYY-MM
+    monthly_agg[ym].append(val)
+monthly = []
+for ym in sorted(monthly_agg.keys()):
+    vals = monthly_agg[ym]
+    monthly.append({
+        "month": ym,
+        "avg": round(sum(vals) / len(vals)),
+        "count": len(vals),
+        "min": min(vals),
+        "max": max(vals),
+    })
+
 data = {
     "date": f"{now.year}年{now.month}月{now.day}日 {weekdays[now.weekday()]}",
     "age": age,
     "total_cny": total,
     "assets": assets,
     "highlights": highlights,
+    "monthly": monthly,
     "updated_at": now.strftime("%Y-%m-%d %H:%M CST"),
     "prices": {
         "btc_usd": btc_usd,

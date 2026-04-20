@@ -91,6 +91,46 @@ td {
   padding: 12px; border-radius: 8px; color: #ff8080;
   margin: 10px 0; font-size: 13px;
 }
+.monthly-wrap {
+  background: rgba(255,255,255,0.02);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+}
+.m-row {
+  display: grid;
+  grid-template-columns: 75px 1fr 80px;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed rgba(255,255,255,0.06);
+  font-size: clamp(12px, 3vw, 14px);
+}
+.m-row:last-child { border-bottom: 0; }
+.m-month { color: #DDA0DD; font-weight: 600; font-family: 'SF Mono', monospace; }
+.m-bar-wrap { position: relative; height: 22px; background: rgba(255,255,255,0.04); border-radius: 4px; overflow: hidden; }
+.m-bar {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  background: linear-gradient(90deg, #FF69B4, #DDA0DD);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+.m-bar.highest {
+  background: linear-gradient(90deg, #4ade80, #86efac);
+}
+.m-bar-label {
+  position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+  font-size: 11px; font-family: 'SF Mono', monospace;
+  color: #fff; text-shadow: 0 0 3px rgba(0,0,0,0.6);
+  white-space: nowrap;
+}
+.m-count { color: #888; text-align: right; font-family: 'SF Mono', monospace; font-size: 11px; }
+.m-summary {
+  margin-top: 10px; padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex; justify-content: space-between;
+  font-size: 12px; color: #aaa;
+}
 .footer {
   text-align: center; color: #666; font-size: 11px;
   margin-top: 24px; padding-top: 12px;
@@ -130,6 +170,9 @@ td {
 
   <div class="section-title">⚡ 今日要点</div>
   <div class="points" id="points"></div>
+
+  <div class="section-title">📊 月度资产均值</div>
+  <div class="monthly-wrap" id="monthly"></div>
 
   <div class="footer">
     <div>数据源：CoinGecko · 东方财富 · gold-api · exchangerate-api</div>
@@ -202,6 +245,45 @@ function render(d) {
   pointsEl.innerHTML = (d.highlights || []).map(p =>
     `<div class="point">• ${p}</div>`
   ).join('');
+
+  renderMonthly(d.monthly || []);
+}
+
+function renderMonthly(monthly) {
+  const el = document.getElementById('monthly');
+  if (!monthly.length) { el.innerHTML = '<div style="color:#888;padding:12px;">暂无数据</div>'; return; }
+
+  const maxAvg = Math.max(...monthly.map(m => m.avg));
+  const minAvg = Math.min(...monthly.map(m => m.avg));
+  // 基准线用最小值的 92%，让条形长度差异更明显
+  const base = minAvg * 0.92;
+  const range = maxAvg - base;
+
+  const rows = monthly.map(m => {
+    const pct = range > 0 ? ((m.avg - base) / range) * 100 : 100;
+    const isHigh = m.avg === maxAvg;
+    const wan = (m.avg / 10000).toFixed(1);
+    return `
+      <div class="m-row">
+        <div class="m-month">${m.month}</div>
+        <div class="m-bar-wrap">
+          <div class="m-bar ${isHigh ? 'highest' : ''}" style="width:${Math.max(8, pct)}%"></div>
+          <div class="m-bar-label">¥${wan}万</div>
+        </div>
+        <div class="m-count">n=${m.count}</div>
+      </div>`;
+  }).join('');
+
+  const allAvg = monthly.reduce((s, m) => s + m.avg * m.count, 0) / monthly.reduce((s, m) => s + m.count, 0);
+  const diff = monthly.length >= 2 ? monthly[monthly.length-1].avg - monthly[0].avg : 0;
+  const diffStr = diff >= 0 ? `+¥${(diff/10000).toFixed(2)}万` : `-¥${(Math.abs(diff)/10000).toFixed(2)}万`;
+  const diffColor = diff >= 0 ? '#4ade80' : '#ff8080';
+
+  el.innerHTML = rows + `
+    <div class="m-summary">
+      <span>整体均值 ¥${(allAvg/10000).toFixed(1)}万</span>
+      <span style="color:${diffColor};">首月→本月 ${diffStr}</span>
+    </div>`;
 }
 
 load();
