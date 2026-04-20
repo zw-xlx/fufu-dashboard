@@ -3,145 +3,209 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>🎀 福福资产日报</title>
+<title>福福资产日报</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  background: linear-gradient(135deg, #1a0533, #2d1b69, #1a1a3e);
+html, body {
+  background: #fafafa;
   font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  color: #e0e0e0;
+  color: #1a1a1a;
   min-height: 100vh;
-  padding: 20px 12px;
+  -webkit-font-smoothing: antialiased;
 }
-.container { max-width: 760px; margin: 0 auto; }
+body { padding: 28px 16px 40px; }
+.container { max-width: 680px; margin: 0 auto; }
+
 .header {
-  display: flex; justify-content: space-between; align-items: flex-end;
-  margin-bottom: 16px; flex-wrap: wrap; gap: 8px;
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e5e5e5;
 }
-.title { font-size: clamp(22px, 5vw, 28px); color: #FF69B4; font-weight: 700; }
-.subtitle { font-size: clamp(13px, 3.2vw, 15px); color: #DDA0DD; margin-top: 4px; }
-.date { font-size: clamp(13px, 3.2vw, 16px); color: #aaa; }
-.divider {
-  height: 2px;
-  background: linear-gradient(90deg, #FF69B4, #DDA0DD, #FF69B4);
-  margin: 14px 0;
-  border-radius: 1px;
+.title {
+  font-size: clamp(18px, 4.4vw, 22px);
+  color: #111;
+  font-weight: 600;
+  letter-spacing: -0.3px;
 }
+.subtitle {
+  font-size: clamp(12px, 3vw, 13px);
+  color: #888;
+  margin-top: 4px;
+}
+.date {
+  font-size: clamp(12px, 3vw, 13px);
+  color: #888;
+  margin-top: 2px;
+}
+
 .summary {
-  background: rgba(255,105,180,0.08);
-  border: 1px solid rgba(255,105,180,0.25);
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 16px;
-  text-align: center;
+  margin-bottom: 24px;
+  padding: 6px 0 18px;
+}
+.summary .label {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 6px;
+  letter-spacing: 0.3px;
 }
 .summary .big {
-  font-size: clamp(28px, 8vw, 42px);
-  font-weight: 700;
-  color: #FF69B4;
-  font-family: 'SF Mono', 'Menlo', monospace;
+  font-size: clamp(30px, 8vw, 40px);
+  font-weight: 600;
+  color: #111;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.5px;
 }
-.summary .label { font-size: 13px; color: #888; margin-top: 4px; }
-.summary .updated { font-size: 12px; color: #666; margin-top: 8px; }
-table { width: 100%; border-collapse: collapse; }
+.summary .updated {
+  font-size: 11px;
+  color: #aaa;
+  margin-top: 6px;
+}
+
+.section-title {
+  font-size: clamp(13px, 3.2vw, 14px);
+  color: #666;
+  font-weight: 500;
+  margin: 26px 0 10px;
+  letter-spacing: 0.3px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
 th {
-  background: rgba(255,105,180,0.15); color: #FF69B4;
-  padding: 10px 8px; text-align: left;
-  font-size: clamp(12px, 3vw, 14px); font-weight: 600;
-  border-bottom: 1px solid #333;
+  padding: 10px 8px;
+  text-align: left;
+  font-size: 11px;
+  color: #999;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  border-bottom: 1px solid #e5e5e5;
+  text-transform: uppercase;
 }
+th:nth-child(3), th:nth-child(4), th:last-child { text-align: right; }
 td {
   padding: 12px 8px;
-  font-size: clamp(12px, 3vw, 14px);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: clamp(12px, 3.2vw, 14px);
+  border-bottom: 1px solid #f0f0f0;
   vertical-align: middle;
 }
-.asset-name { font-weight: 600; }
-.asset-emoji { margin-right: 4px; }
-.val { font-family: 'SF Mono', 'Menlo', monospace; }
-.price-cell { color: #aaa; font-size: clamp(11px, 2.8vw, 13px); }
-.val-cell { color: #fff; font-weight: 600; }
-.bar-wrap { display: flex; align-items: center; gap: 6px; min-width: 80px; }
-.bar {
-  height: 6px; border-radius: 3px; flex-shrink: 0;
-  background: linear-gradient(90deg,#FF69B4,#DDA0DD);
+td:nth-child(3), td:nth-child(4), td:last-child { text-align: right; }
+.asset-name { font-weight: 500; color: #111; }
+.price-cell { color: #888; font-size: clamp(11px, 2.8vw, 12px); }
+.val-cell { color: #111; font-weight: 500; }
+.pct-cell { color: #666; font-size: clamp(11px, 2.8vw, 12px); }
+.qty-cell { color: #555; }
+.total-row td {
+  padding: 14px 8px;
+  font-weight: 600;
+  color: #111;
+  font-size: clamp(13px, 3.4vw, 15px);
+  border-bottom: 0;
+  border-top: 1.5px solid #111;
 }
-.pct { font-size: clamp(11px, 2.8vw, 13px); color: #ccc; min-width: 38px; text-align: right; }
-.total-row { background: rgba(255,105,180,0.1) !important; font-weight: 700; }
-.total-row td { color: #FF69B4; font-size: clamp(14px, 3.8vw, 17px); }
-.section-title {
-  color: #FF69B4; font-size: clamp(15px, 4vw, 18px);
-  margin: 20px 0 8px; font-weight: 600;
-}
-.points { margin-bottom: 20px; }
-.point {
-  padding: 8px 12px; margin: 6px 0;
-  background: rgba(255,255,255,0.03);
-  border-left: 3px solid #FF69B4;
-  border-radius: 0 8px 8px 0;
-  font-size: clamp(12px, 3.2vw, 14px);
-  color: #ddd;
-}
-.loading {
-  text-align: center; padding: 40px; color: #888;
-  font-size: 14px;
-}
-.error {
-  background: rgba(255,80,80,0.1); border: 1px solid rgba(255,80,80,0.3);
-  padding: 12px; border-radius: 8px; color: #ff8080;
-  margin: 10px 0; font-size: 13px;
-}
+
 .monthly-wrap {
-  background: rgba(255,255,255,0.02);
-  border-radius: 10px;
-  padding: 12px 14px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .m-row {
   display: grid;
-  grid-template-columns: 75px 1fr 80px;
+  grid-template-columns: 72px 1fr 74px 48px;
   gap: 10px;
   align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px dashed rgba(255,255,255,0.06);
-  font-size: clamp(12px, 3vw, 14px);
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: clamp(12px, 3vw, 13px);
 }
 .m-row:last-child { border-bottom: 0; }
-.m-month { color: #DDA0DD; font-weight: 600; font-family: 'SF Mono', monospace; }
-.m-bar-wrap { position: relative; height: 22px; background: rgba(255,255,255,0.04); border-radius: 4px; overflow: hidden; }
+.m-month {
+  color: #666;
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+.m-bar-wrap {
+  position: relative;
+  height: 14px;
+  background: #f0f0f0;
+  border-radius: 2px;
+  overflow: hidden;
+}
 .m-bar {
   position: absolute; left: 0; top: 0; bottom: 0;
-  background: linear-gradient(90deg, #FF69B4, #DDA0DD);
-  border-radius: 4px;
+  background: #333;
+  border-radius: 2px;
   transition: width 0.4s ease;
 }
 .m-bar.highest {
-  background: linear-gradient(90deg, #4ade80, #86efac);
+  background: #16a34a;
 }
-.m-bar-label {
-  position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
-  font-size: 11px; font-family: 'SF Mono', monospace;
-  color: #fff; text-shadow: 0 0 3px rgba(0,0,0,0.6);
-  white-space: nowrap;
+.m-val {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: #111;
+  font-weight: 500;
+  font-size: 12px;
 }
-.m-count { color: #888; text-align: right; font-family: 'SF Mono', monospace; font-size: 11px; }
+.m-count {
+  color: #aaa;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+}
 .m-summary {
-  margin-top: 10px; padding-top: 10px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  display: flex; justify-content: space-between;
-  font-size: 12px; color: #aaa;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e5e5;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #666;
 }
+.m-summary .diff-up { color: #16a34a; font-weight: 500; }
+.m-summary .diff-down { color: #dc2626; font-weight: 500; }
+
+.loading { padding: 20px 0; color: #888; font-size: 13px; text-align: center; }
+.error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  padding: 12px;
+  border-radius: 6px;
+  margin: 10px 0;
+  font-size: 13px;
+}
+
 .footer {
-  text-align: center; color: #666; font-size: 11px;
-  margin-top: 24px; padding-top: 12px;
-  border-top: 1px solid rgba(255,255,255,0.05);
+  text-align: center;
+  color: #bbb;
+  font-size: 11px;
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+  line-height: 1.6;
 }
-.footer a { color: #888; text-decoration: none; }
 
 @media (max-width: 480px) {
-  body { padding: 12px 8px; }
-  th, td { padding: 8px 5px; }
-  .bar-wrap { min-width: 60px; }
+  body { padding: 20px 12px 32px; }
+  th, td { padding: 10px 4px; }
+  th { font-size: 10px; }
+}
+
+@media (prefers-color-scheme: dark) {
+  html, body { background: #0f0f0f; color: #e5e5e5; }
+  .title, .summary .big, .asset-name, .val-cell, .total-row td { color: #f5f5f5; }
+  .header, .total-row td { border-color: #333; }
+  th { color: #888; border-color: #2a2a2a; }
+  td, .m-row, .m-summary { border-color: #222 !important; }
+  .price-cell, .qty-cell, .pct-cell { color: #999; }
+  .m-bar-wrap { background: #1f1f1f; }
+  .m-bar { background: #e5e5e5; }
+  .m-bar.highest { background: #22c55e; }
+  .m-val { color: #f5f5f5; }
+  .footer { color: #555; border-color: #222; }
+  .summary .updated, .subtitle, .date { color: #777; }
+  .error { background: #2a1515; border-color: #5a2020; color: #fca5a5; }
 }
 </style>
 </head>
@@ -150,33 +214,27 @@ td {
 <div class="container">
 
   <div class="header">
-    <div>
-      <div class="title">🎀 福福资产日报</div>
-      <div class="subtitle" id="subtitle">加载中...</div>
-    </div>
+    <div class="title">福福资产日报</div>
+    <div class="subtitle" id="subtitle">加载中…</div>
     <div class="date" id="date"></div>
   </div>
-  <div class="divider"></div>
 
   <div class="summary">
+    <div class="label">总资产 (CNY)</div>
     <div class="big" id="total-cny">¥ ---</div>
-    <div class="label">总资产（人民币）</div>
-    <div class="updated" id="updated">数据更新中...</div>
+    <div class="updated" id="updated">更新中…</div>
   </div>
 
   <div id="content">
-    <div class="loading">💫 正在从最新静态数据加载...</div>
+    <div class="loading">加载中…</div>
   </div>
 
-  <div class="section-title">⚡ 今日要点</div>
-  <div class="points" id="points"></div>
-
-  <div class="section-title">📊 月度资产均值</div>
+  <div class="section-title">月度均值</div>
   <div class="monthly-wrap" id="monthly"></div>
 
   <div class="footer">
-    <div>数据源：CoinGecko · 东方财富 · gold-api · exchangerate-api</div>
-    <div style="margin-top:4px;">每日 10:00（北京时间）自动更新</div>
+    <div>CoinGecko · 东方财富 · gold-api · exchangerate-api</div>
+    <div>每日 10:00 (Asia/Shanghai) 更新</div>
   </div>
 
 </div>
@@ -190,7 +248,7 @@ async function load() {
     render(d);
   } catch (e) {
     document.getElementById('content').innerHTML =
-      '<div class="error">❌ 加载失败：' + e.message + '</div>';
+      '<div class="error">加载失败：' + e.message + '</div>';
   }
 }
 
@@ -202,33 +260,27 @@ function fmt(n, decimals = 0) {
 }
 
 function render(d) {
-  document.getElementById('subtitle').textContent = '👶 福福今天 ' + d.age;
+  document.getElementById('subtitle').textContent = '福福 · ' + d.age;
   document.getElementById('date').textContent = d.date;
   document.getElementById('total-cny').textContent = '¥ ' + fmt(d.total_cny);
   document.getElementById('updated').textContent = '最后更新：' + d.updated_at;
 
   let rows = '';
   d.assets.forEach(a => {
-    const barWidth = Math.max(4, Math.min(100, a.pct));
     rows += `
       <tr>
-        <td class="asset-name">${a.emoji} ${a.name}</td>
-        <td>${a.qty_display}</td>
-        <td class="price-cell val">${a.price_display || '–'}</td>
-        <td class="val val-cell">¥${fmt(a.value_cny)}</td>
-        <td>
-          <div class="bar-wrap">
-            <div class="bar" style="width:${barWidth}%"></div>
-            <div class="pct">${a.pct.toFixed(1)}%</div>
-          </div>
-        </td>
+        <td class="asset-name">${a.name}</td>
+        <td class="qty-cell">${a.qty_display}</td>
+        <td class="price-cell">${a.price_display || '—'}</td>
+        <td class="val-cell">¥${fmt(a.value_cny)}</td>
+        <td class="pct-cell">${a.pct.toFixed(1)}%</td>
       </tr>`;
   });
   rows += `
     <tr class="total-row">
-      <td colspan="3">🏆 总计</td>
-      <td class="val">¥${fmt(d.total_cny)}</td>
-      <td class="pct">100%</td>
+      <td colspan="3">总计</td>
+      <td>¥${fmt(d.total_cny)}</td>
+      <td>100%</td>
     </tr>`;
 
   document.getElementById('content').innerHTML = `
@@ -241,21 +293,18 @@ function render(d) {
       <tbody>${rows}</tbody>
     </table>`;
 
-  const pointsEl = document.getElementById('points');
-  pointsEl.innerHTML = (d.highlights || []).map(p =>
-    `<div class="point">• ${p}</div>`
-  ).join('');
-
   renderMonthly(d.monthly || []);
 }
 
 function renderMonthly(monthly) {
   const el = document.getElementById('monthly');
-  if (!monthly.length) { el.innerHTML = '<div style="color:#888;padding:12px;">暂无数据</div>'; return; }
+  if (!monthly.length) {
+    el.innerHTML = '<div class="loading">暂无数据</div>';
+    return;
+  }
 
   const maxAvg = Math.max(...monthly.map(m => m.avg));
   const minAvg = Math.min(...monthly.map(m => m.avg));
-  // 基准线用最小值的 92%，让条形长度差异更明显
   const base = minAvg * 0.92;
   const range = maxAvg - base;
 
@@ -268,21 +317,26 @@ function renderMonthly(monthly) {
         <div class="m-month">${m.month}</div>
         <div class="m-bar-wrap">
           <div class="m-bar ${isHigh ? 'highest' : ''}" style="width:${Math.max(8, pct)}%"></div>
-          <div class="m-bar-label">¥${wan}万</div>
         </div>
+        <div class="m-val">¥${wan}万</div>
         <div class="m-count">n=${m.count}</div>
       </div>`;
   }).join('');
 
-  const allAvg = monthly.reduce((s, m) => s + m.avg * m.count, 0) / monthly.reduce((s, m) => s + m.count, 0);
-  const diff = monthly.length >= 2 ? monthly[monthly.length-1].avg - monthly[0].avg : 0;
-  const diffStr = diff >= 0 ? `+¥${(diff/10000).toFixed(2)}万` : `-¥${(Math.abs(diff)/10000).toFixed(2)}万`;
-  const diffColor = diff >= 0 ? '#4ade80' : '#ff8080';
+  const allAvg = monthly.reduce((s, m) => s + m.avg * m.count, 0)
+    / monthly.reduce((s, m) => s + m.count, 0);
+  const diff = monthly.length >= 2
+    ? monthly[monthly.length - 1].avg - monthly[0].avg
+    : 0;
+  const diffClass = diff >= 0 ? 'diff-up' : 'diff-down';
+  const diffStr = diff >= 0
+    ? `+¥${(diff / 10000).toFixed(2)}万`
+    : `-¥${(Math.abs(diff) / 10000).toFixed(2)}万`;
 
   el.innerHTML = rows + `
     <div class="m-summary">
-      <span>整体均值 ¥${(allAvg/10000).toFixed(1)}万</span>
-      <span style="color:${diffColor};">首月→本月 ${diffStr}</span>
+      <span>整体均值 ¥${(allAvg / 10000).toFixed(1)}万</span>
+      <span class="${diffClass}">首月→本月 ${diffStr}</span>
     </div>`;
 }
 
