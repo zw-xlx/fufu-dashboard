@@ -7,8 +7,10 @@ import json, urllib.request, subprocess, datetime, os
 from pathlib import Path
 
 BASE = Path(__file__).parent
-ROOT = BASE.parent
-PORTFOLIO = ROOT / 'fufu-portfolio.json'
+# 优先用当前目录的持仓文件（GitHub Actions 场景），否则回退到上级目录（本地场景）
+PORTFOLIO = BASE / 'fufu-portfolio.json'
+if not PORTFOLIO.exists():
+    PORTFOLIO = BASE.parent / 'fufu-portfolio.json'
 OUT = BASE / 'data.json'
 
 def get_json(url, timeout=15):
