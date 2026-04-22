@@ -1,54 +1,54 @@
 {
-  "date": "2026年4月20日 周一",
+  "date": "2026年4月22日 周三",
   "age": "2岁8个月",
-  "total_cny": 1430678,
+  "total_cny": 1451802,
   "assets": [
     {
       "name": "比特币",
       "emoji": "₿",
       "qty_display": "1 枚",
-      "price_display": "¥508,745/枚",
-      "value_cny": 508745,
-      "pct": 35.6
+      "price_display": "¥526,232/枚",
+      "value_cny": 526232,
+      "pct": 36.2
     },
     {
       "name": "黄金",
       "emoji": "🥇",
       "qty_display": "388.5 克",
-      "price_display": "¥1,052.98/克",
-      "value_cny": 409081,
-      "pct": 28.6
+      "price_display": "¥1,045.83/克",
+      "value_cny": 406305,
+      "pct": 28.0
     },
     {
       "name": "宁德时代",
       "emoji": "🔋",
       "qty_display": "600 股",
-      "price_display": "¥427.30/股",
-      "value_cny": 256380,
-      "pct": 17.9
+      "price_display": "¥436.05/股",
+      "value_cny": 261630,
+      "pct": 18.0
     },
     {
       "name": "现金",
       "emoji": "💵",
       "qty_display": "–",
       "price_display": "",
-      "value_cny": 165056,
-      "pct": 11.5
+      "value_cny": 169230,
+      "pct": 11.7
     },
     {
       "name": "腾讯控股",
       "emoji": "🐧",
       "qty_display": "200 股",
-      "price_display": "HK$524.00",
-      "value_cny": 91416,
-      "pct": 6.4
+      "price_display": "HK$506.00",
+      "value_cny": 88405,
+      "pct": 6.1
     }
   ],
   "highlights": [
-    "BTC 报 $74,605（¥508,745/枚），占组合 35.6%",
-    "国际金价 $4,795/盎司，折合 ¥1,052.98/克，黄金持仓占 28.6%",
-    "宁德时代 ¥427.30，持仓占 17.9%",
-    "腾讯控股 HK$524.00，持仓占 6.4%"
+    "BTC 报 $77,128（¥526,232/枚），占组合 36.2%",
+    "国际金价 $4,756/盎司，折合 ¥1,045.83/克，黄金持仓占 28.0%",
+    "宁德时代 ¥436.05，持仓占 18.0%",
+    "腾讯控股 HK$506.00，持仓占 6.1%"
   ],
   "monthly": [
     {
@@ -60,22 +60,22 @@
     },
     {
       "month": "2026-04",
-      "avg": 1378788,
-      "count": 12,
+      "avg": 1384404,
+      "count": 13,
       "min": 1351452,
-      "max": 1430678
+      "max": 1451802
     }
   ],
-  "updated_at": "2026-04-20 11:52 CST",
+  "updated_at": "2026-04-22 10:40 CST",
   "prices": {
-    "btc_usd": 74605,
-    "btc_cny": 508745,
-    "gold_usd_oz": 4795.200195,
-    "gold_cny_g": 1052.98,
-    "usd_cny": 6.83,
-    "hkd_cny": 0.8723,
-    "catl_cny": 427.3,
-    "moutai_cny": 1411.1,
-    "tencent_hkd": 524.0
+    "btc_usd": 77128,
+    "btc_cny": 526232,
+    "gold_usd_oz": 4755.700195,
+    "gold_cny_g": 1045.83,
+    "usd_cny": 6.84,
+    "hkd_cny": 0.8736,
+    "catl_cny": 436.05,
+    "moutai_cny": 1410.06,
+    "tencent_hkd": 506.0
   }
 }

@@ -6,6 +6,6 @@
     { "type": "commodity", "name": "黄金", "quantity": 388.5, "unit": "克" },
     { "type": "stock_cn", "name": "宁德时代", "quantity": 600, "unit": "股", "code": "300750.SZ" },
     { "type": "stock_hk", "name": "腾讯控股", "quantity": 200, "unit": "股", "code": "0700.HK" },
-    { "type": "cash", "name": "现金", "quantity": 165056, "unit": "元" }
+    { "type": "cash", "name": "现金", "quantity": 169230, "unit": "元" }
   ]
 }
